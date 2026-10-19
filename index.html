@@ -19,26 +19,62 @@
 <h1>AGR2026: Predicting Crop Yield Across Uganda's Subregions</h1>
 <p class="meta">A structural analysis of soil, climate, geography, infrastructure, and population data across Uganda's 14 UBOS subregions.</p>
 
+<h2>Why This Project</h2>
+<p>
+Uganda's northeastern region, Karamoja, is living through a severe hunger crisis as of 2026 --
+government relief efforts now target more than 300,000 households, and reports describe crop
+losses of 50 to 70 percent in the hardest-hit areas. This isn't the first time: a similar crisis
+in 2022 killed more than 2,000 people in the same region. Experts studying it are blunt about
+what to expect -- this will not be the last time.
+</p>
+<p>
+This project started from a simple question: can publicly available data about soil, climate,
+and local conditions help explain <i>why</i> some regions consistently struggle to grow enough
+food, while others don't? The map further down this page, showing water deficit by region, lines
+up with where this crisis is hitting hardest -- the driest regions (Karamoja, West Nile, Acholi,
+Teso) are exactly the ones in the news.
+</p>
+<p>
+To be upfront about what this is and isn't: this is early-stage research covering four crops
+(maize, beans, cassava, groundnuts), not yet the staple grains hit hardest in Karamoja, and the
+models here are not accurate enough to act on directly. What this project <i>can</i> do, honestly,
+is show that the pattern is real and explainable with data -- and lay groundwork that, expanded
+with more crops and more years of data, could eventually support real decisions. That expansion
+is the plan for where this project goes next.
+</p>
+
 <h2>Methodology</h2>
 <p>
-Models were built independently for four crops (maize, beans, cassava, groundnuts) using a reduced
-17-variable structural feature set spanning climate, soil, terrain, infrastructure, and population.
-Each model was validated using <b>leave-one-subregion-out cross-validation</b> -- a stricter
-standard than a random train/test split, chosen specifically to prevent nearby subregions from
-leaking information into each other and inflating apparent accuracy. Every finding was tested
-across multiple model families (Random Forest, Ridge Regression, and Gradient Boosting where
-sample size allowed) -- a result is only reported as confirmed when it holds up outside of any
-single model's quirks. Null and unstable results are reported as real findings, not hidden.
+We looked at four crops -- maize, beans, cassava, and groundnuts -- grown across Uganda's 14
+regions, and tried to understand how much of the difference in how well each crop grows from one
+region to another can be explained by things like rainfall, soil quality, temperature, how hilly
+the land is, and how connected a region is (roads, electricity, radio access).
+</p>
+<p>
+To make sure we weren't fooling ourselves, we tested each region's prediction using only
+information learned from the <i>other</i> 13 regions -- the model was never allowed to "peek" at
+the answer for the region being tested. We also double-checked every result using two different
+analysis methods, a bit like confirming a story with two independent sources: a finding only
+counts as trustworthy if both methods agree on it.
+</p>
+<p>
+Some results came out shaky, unclear, or simply didn't hold up -- and rather than hide that, we're
+reporting it honestly. A result that doesn't work is still useful information.
 </p>
 
 <h2>Model Performance by Crop</h2>
 <div style="height:500px; width:750px;">                        <script>window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
         <script charset="utf-8" src="https://cdn.plot.ly/plotly-4.1.1.min.js" integrity="sha256-O24V1F27f8pb0glCkelh3cVHLNiHAJ5gCaVtq2aNch8=" crossorigin="anonymous"></script>                <div id="0d2c210c-dbbe-41be-a785-83a8ccdd50f0" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("0d2c210c-dbbe-41be-a785-83a8ccdd50f0")) {                    Plotly.newPlot(                        "0d2c210c-dbbe-41be-a785-83a8ccdd50f0",                        [{"marker":{"color":"#2a78d6"},"name":"Random Forest","text":{"dtype":"f8","bdata":"JzEIrBxaxD+sHFpkO9\u002fXP6wcWmQ7388\u002f5\u002fup8dJNwr8="},"textposition":"outside","x":["maize","beans","cassava","groundnuts"],"y":{"dtype":"f8","bdata":"JzEIrBxaxD+sHFpkO9\u002fXP6wcWmQ7388\u002f5\u002fup8dJNwr8="},"type":"bar"},{"marker":{"color":"#eb6834"},"name":"Ridge","text":{"dtype":"f8","bdata":"AiuHFtnOtz\u002fZzvdT46WrP0SLbOf7qcG\u002fhxbZzvdT278="},"textposition":"outside","x":["maize","beans","cassava","groundnuts"],"y":{"dtype":"f8","bdata":"AiuHFtnOtz\u002fZzvdT46WrP0SLbOf7qcG\u002fhxbZzvdT278="},"type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05}}},"shapes":[{"line":{"color":"black","width":1},"type":"line","x0":0,"x1":1,"xref":"x domain","y0":0,"y1":0,"yref":"y"}],"title":{"text":"Structural Model R\u00b2 by Crop and Model Family"},"yaxis":{"title":{"text":"LOGO-CV R\u00b2"}},"barmode":"group","height":500,"width":750},                        {"responsive": true}                    )                };            </script>        </div>
 <div class="caveat">
-Maize and beans show genuine, cross-model-validated signal. Cassava's Random Forest result looks
-strong but does not replicate under Ridge regression -- treated as an open question, not a
-confirmed finding. Groundnuts shows a confirmed null result: yield varies too little between
-subregions, relative to its own noise, for any model tested to explain it.
+<b>How to read the chart above</b>: think of each bar as "how much of the yield difference between
+regions this approach can explain" -- zero means it explains nothing beyond a random guess, and
+higher (up to 1) means it explains more. A bar below zero means the approach actually did
+<i>worse</i> than simply guessing the average every time.
+<br><br>
+Maize and beans show real, trustworthy signal. Cassava's result looks strong under one method but
+falls apart under the other -- we're treating that as unresolved, not confirmed. Groundnuts shows
+a clear "we don't know" result: yield barely differs between regions in this data, so there's
+nothing for any method to find.
 </div>
 
 <h2>What Drives Yield? (select a crop)</h2>
