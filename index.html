@@ -187,5 +187,56 @@ national coffee export profile, where Robusta represents the large majority of p
 Author: Paul Ojang &nbsp;|&nbsp; Contact: paulojangite@gmail.com<br>
 </p>
 
+
+<h2>Cereals: Millet, Sorghum &amp; Rice (Phase 2, continued)</h2>
+<p>
+These three grain staples were added together as a batch, following coffee. As with coffee,
+building this dataset surfaced real source-data problems: the 2020 government report used a more
+complex table layout for several crops, and this caused the original parsing to silently fail or
+misalign data for multiple crops in that year -- not just one. Sorghum's entire 2020 table was
+missing outright; millet and rice each had partial 2020 data that, on closer inspection, had rows
+swapped between subregions (one subregion's real numbers were filed under a different subregion's
+name). All three were corrected by re-transcribing the 2020 tables directly from the original
+report, row by row, cross-checked against the report's own computed yield figures.
+</p>
+
+<div class="finding">
+<strong>A note on reading the charts below:</strong> "yield" (measured in mt/ha) and "production"
+(measured in total MT) are different things. Yield measures how productive each hectare of land is;
+production measures the total harvest. A subregion can have high yield (very efficient land use)
+while a *different* subregion produces far more total grain simply because it plants a much larger
+area, even at lower efficiency per hectare. Karamoja is a clear example for sorghum: it plants a
+much larger total area than smaller subregions, so despite having a lower yield per hectare, it is
+likely a far larger overall producer. Both charts are shown to avoid misleading conclusions from
+either one alone.
+</div>
+
+<iframe src="cereals_yield_by_subregion.html"></iframe>
+<p>Average yield (mt/ha) by subregion, 2018-2021/22. Select a crop from the dropdown.</p>
+
+<iframe src="cereals_production_by_subregion.html"></iframe>
+<p>Average annual production (total MT) by subregion, 2018-2021/22. Select a crop from the dropdown.</p>
+
+<iframe src="cereals_yield_trend.html"></iframe>
+<p>National average yield trend by survey year. Select a crop from the dropdown.</p>
+
+<div class="caveat">
+<strong>On the modeling results:</strong> of the three cereals, only <strong>rice</strong> produced
+a reliable finding: three independently-built models (Random Forest, Gradient Boosting, and a
+simple decision tree) agreed that rainfall and climatic water deficit are real drivers of rice
+yield -- drier conditions mean lower yield. For <strong>millet</strong> and <strong>sorghum</strong>,
+only one of the four models tested showed any positive result, and the others disagreed or
+performed worse than simply guessing the average -- so, consistent with how this project has
+treated every inconclusive result, we are not presenting a driver for either crop. The data is
+shown above regardless, because raw data is useful on its own even without a reliable model behind it.
+</div>
+
+<iframe src="rice_water_deficit_bands.html"></iframe>
+<p>
+Rice yield grouped by water-deficit level (low/medium/high, equal-sized groups). The step-down
+pattern -- from 1.30 mt/ha in the driest-adjusted low-deficit group to 0.91 mt/ha in the
+high-deficit group -- is the clearest confirmed relationship found in this round of modeling.
+</p>
+
 </body>
 </html>
