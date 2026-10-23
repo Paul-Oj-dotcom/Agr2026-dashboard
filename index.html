@@ -43,6 +43,40 @@ with more crops and more years of data, could eventually support real decisions.
 is the plan for where this project goes next.
 </p>
 
+
+<h2>Data Sources</h2>
+<ul>
+<li><strong>Crop yield data:</strong> Uganda Bureau of Statistics (UBOS), Annual Agricultural Survey
+(AAS) reports, 2018-2020, and the Uganda National Household Integrated Survey (UHIS) 2021/22 report.</li>
+<li><strong>Climate data:</strong> TerraClimate (University of Idaho / Climatology Lab), gridded monthly
+climate and water-balance data.</li>
+<li><strong>Soil data:</strong> ISRIC SoilGrids, global gridded soil property predictions.</li>
+<li><strong>Population and infrastructure data:</strong> UBOS National Population and Housing Census
+(NPHC) 2024, subcounty-level profiles.</li>
+<li><strong>Subregion/district boundaries:</strong> OpenStreetMap administrative boundary data.</li>
+</ul>
+
+<h2>Feature Glossary</h2>
+<p>Plain-language definitions of the key variables behind this project's models:</p>
+<ul>
+<li><strong>def (water deficit):</strong> how much drier an area is than its plants need -- the gap
+between the moisture crops could use and what the soil and rain actually provide. The single
+strongest predictor found in this project.</li>
+<li><strong>ppt:</strong> rainfall (precipitation).</li>
+<li><strong>tmin / tmax:</strong> average minimum and maximum temperature.</li>
+<li><strong>vap / vpd:</strong> measures of air moisture (humidity-related).</li>
+<li><strong>soc (soil organic carbon):</strong> a measure of soil fertility and humus content.</li>
+<li><strong>clay / cec / phh2o / cfvo:</strong> soil texture, nutrient-holding capacity, acidity, and
+stone content -- all affecting how well soil supports plant growth.</li>
+<li><strong>slope / aspect:</strong> steepness and compass-direction of the land, affecting drainage,
+erosion, and sunlight exposure.</li>
+<li><strong>pct_any_electricity / pct_radio / pct_improved_water:</strong> the share of households in a
+subregion with access to electricity, radio, and safe drinking water -- used as proxies for general
+infrastructure and farmer access to information and resources.</li>
+<li><strong>drivable_density_km_per_km2:</strong> density of drivable roads, a measure of market access.</li>
+<li><strong>households / avg_hh_size:</strong> population and household size context for each subregion.</li>
+</ul>
+
 <h2>Methodology</h2>
 <p>
 We looked at four crops -- maize, beans, cassava, and groundnuts -- grown across Uganda's 14
@@ -96,6 +130,61 @@ matching Uganda's known semi-arid north and northeast. The wettest highland subr
 (Kigezi, Ankole, Tooro) show the lowest -- an independent geographic confirmation that the
 underlying climate data and modeling results are internally consistent. Hover over any district
 for its exact subregion and water-deficit value.
+</p>
+
+
+<h2>Coffee: Robusta &amp; Arabica (Added in Phase 2)</h2>
+<p>
+Coffee is Uganda's largest export crop, and was added to this project after our initial four
+staples (maize, beans, cassava, groundnuts) -- both Robusta and Arabica, Uganda's two commercially
+grown types.
+</p>
+<p>
+Building this dataset surfaced real problems worth being upfront about: the original government
+source data for coffee had a column-alignment error that silently produced wrong production
+figures, and one official report table for Arabica in 2021/22 turned out to be an exact duplicate
+of the Robusta table for the same year -- a genuine error in the source document. Both were caught
+and corrected by rebuilding the affected tables directly from the original published reports,
+cross-checked against the report's own reported yield figures row by row.
+</p>
+
+<iframe src="coffee_yield_by_subregion.html"></iframe>
+<p>
+Average yield by subregion, 2018-2021/22. Western and southern subregions (Ankole, Bunyoro,
+Kigezi, the Bugandas) show the strongest and most consistent production for both coffee types;
+many northern and north-eastern subregions (Karamoja, Teso, Acholi, Lango) report little to no
+coffee production in most years.
+</p>
+
+<div class="caveat">
+<strong>On the modeling attempt:</strong> unlike the four original crops, we were not able to
+build a reliable predictive model for coffee yield. Random Forest and Ridge regression results
+disagreed with each other and, in several tests, performed worse than simply guessing the average
+yield. The most likely reason is sample size: with only 26-41 subregion-year data points spread
+across 14 subregions (compared to 42-56 for the original crops), there usually isn't enough data
+per subregion for a reliable model, especially for Arabica. Rather than present an unreliable model
+as if it were trustworthy, we are showing the underlying data honestly instead.
+</div>
+
+<iframe src="coffee_yield_trend.html"></iframe>
+<p>
+National average yield trend by survey year. One subregion-year (North Buganda, Arabica, 2019)
+was excluded from this chart as an implausible outlier likely caused by a survey definitional
+mismatch (production summed across two seasons attributed to only one season's planted area) --
+noted directly on the chart.
+</p>
+
+<iframe src="coffee_area_vs_production.html"></iframe>
+<p>
+Area planted vs. total production, illustrating the scale of each subregion's coffee sector.
+Robusta is grown across a much larger combined area than Arabica, consistent with Uganda's
+national coffee export profile, where Robusta represents the large majority of production.
+</p>
+
+
+<hr style="margin-top:60px; border:none; border-top:1px solid #ddd;">
+<p class="meta">
+Author: Paul Ojang &nbsp;|&nbsp; Contact: paulojangite@gmail.com<br>
 </p>
 
 </body>
