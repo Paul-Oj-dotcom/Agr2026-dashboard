@@ -44,18 +44,6 @@ is the plan for where this project goes next.
 </p>
 
 
-<h2>Data Sources</h2>
-<ul>
-<li><strong>Crop yield data:</strong> Uganda Bureau of Statistics (UBOS), Annual Agricultural Survey
-(AAS) reports, 2018-2020, and the Uganda National Household Integrated Survey (UHIS) 2021/22 report.</li>
-<li><strong>Climate data:</strong> TerraClimate (University of Idaho / Climatology Lab), gridded monthly
-climate and water-balance data.</li>
-<li><strong>Soil data:</strong> ISRIC SoilGrids, global gridded soil property predictions.</li>
-<li><strong>Population and infrastructure data:</strong> UBOS National Population and Housing Census
-(NPHC) 2024, subcounty-level profiles.</li>
-<li><strong>Subregion/district boundaries:</strong> OpenStreetMap administrative boundary data.</li>
-</ul>
-
 <h2>Feature Glossary</h2>
 <p>Plain-language definitions of the key variables behind this project's models:</p>
 <ul>
@@ -195,12 +183,6 @@ as if it were trustworthy, we are showing the underlying data honestly instead.
 
 
 
-<hr style="margin-top:60px; border:none; border-top:1px solid #ddd;">
-<p class="meta">
-Author: Paul Ojang &nbsp;|&nbsp; Contact: paulojangite@gmail.com<br>
-</p>
-
-
 <h2>Cereals: Millet, Sorghum &amp; Rice (Phase 2, continued)</h2>
 <p>
 These three grain staples were added together as a batch, following coffee. As with coffee,
@@ -214,7 +196,7 @@ report, row by row, cross-checked against the report's own computed yield figure
 </p>
 
 <div class="finding">
-<strong>A note on reading the charts below:</strong> "yield" (measured in mt/ha) and "production"
+<strong>A note on reading the charts above:</strong> "yield" (measured in mt/ha) and "production"
 (measured in total MT) are different things. Yield measures how productive each hectare of land is;
 production measures the total harvest. A subregion can have high yield (very efficient land use)
 while a *different* subregion produces far more total grain simply because it plants a much larger
@@ -223,12 +205,6 @@ much larger total area than smaller subregions, so despite having a lower yield 
 likely a far larger overall producer. Both charts are shown to avoid misleading conclusions from
 either one alone.
 </div>
-
-<p><em>See the "All Crops at a Glance" section above for yield, production, and trend charts covering this crop alongside all others.</em></p>
-
-
-<p><em>See the "All Crops at a Glance" section above for yield, production, and trend charts covering this crop alongside all others.</em></p>
-
 
 <p><em>See the "All Crops at a Glance" section above for yield, production, and trend charts covering this crop alongside all others.</em></p>
 
@@ -244,12 +220,7 @@ treated every inconclusive result, we are not presenting a driver for either cro
 shown above regardless, because raw data is useful on its own even without a reliable model behind it.
 </div>
 
-<iframe src="rice_water_deficit_bands.html"></iframe>
-<p>
-Rice yield grouped by water-deficit level (low/medium/high, equal-sized groups). The step-down
-pattern -- from 1.30 mt/ha in the driest-adjusted low-deficit group to 0.91 mt/ha in the
-high-deficit group -- is the clearest confirmed relationship found in this round of modeling.
-</p>
+
 
 
 <h2>Irish Potatoes, Sweet Potatoes &amp; Simsim (Phase 2, continued)</h2>
@@ -280,6 +251,63 @@ and trend data for all three crops is still shown honestly in the unified charts
 visual pattern can be informative even without a model behind it.
 </p>
 </div>
+
+
+<h2>Banana (Food, Beer &amp; Sweet) and Soya Beans (Phase 2, continued)</h2>
+<p>
+These four crops rounded out this phase of the project. As with earlier batches, the same 2020
+government report table-layout issue surfaced again &mdash; this time as two different problems.
+Soya beans and banana-food had their 2020 data present but internally scrambled: production and
+area figures were shifted into the wrong columns and, for banana-food, subregion labels were
+cyclically mismatched with their real values. Banana-sweet and banana-beer were missing 2020
+entirely from the original parsed data. All four were corrected by re-extracting directly from the
+source report and cross-validating against its own reported formulas, the same standard applied to
+every crop in this project. Banana-sweet and banana-beer also turned out to only have reliable data
+for two survey years (2019 and 2020) rather than four &mdash; not a parsing failure, just thinner
+source coverage for these crops specifically, so results for these two should be read with that
+smaller sample in mind.
+</p>
+<div class="caveat">
+<strong>On the modeling results:</strong> <strong>banana-food</strong> is this phase's most
+interesting finding &mdash; all four models (Random Forest, Ridge, Gradient Boosting, and a
+decision tree) agree its yield is predictable from the feature set. But what drives it is genuinely
+unclear: Random Forest points to water access and soil carbon, Ridge points to soil texture and
+slope, with little overlap between them. That's the same confounding pattern seen earlier with
+cassava and coffee robusta &mdash; infrastructure variables often proxy for farmer wealth rather
+than directly causing yield &mdash; so we're reporting banana-food as predictable, not as having an
+identified cause. <strong>Soya beans</strong> and <strong>banana-sweet</strong> are confirmed null
+results: all four models agree there's no reliable signal in this feature set.
+<strong>Banana-beer</strong> is unconfirmed: two of four models found a positive signal, two
+didn't, and its sample size (19 rows) is the smallest in the project.
+</div>
+<p>
+One data quality note from this batch: a 2020 soya beans reading for Ankole subregion (376 MT from
+just 30 hectares harvested, a 12.4 mt/ha yield) is far outside every other subregion's 0.3-1.3
+mt/ha range. We've kept it in the dataset rather than silently removing it, but flag it here as a
+likely data or survey error worth independent investigation rather than a genuine finding.
+</p>
+
+<h2>Appendix: Data Sources</h2>
+<ul>
+<li><strong>Crop yield data:</strong> Uganda Bureau of Statistics (UBOS), Annual Agricultural Survey
+(AAS) reports, 2018-2020, and the Uganda National Household Integrated Survey (UHIS) 2021/22 report,
+along with UBOS population and infrastructure data &mdash;
+<a href="https://www.ubos.org/explore-statistics/0/" target="_blank" rel="noopener">ubos.org/explore-statistics</a>.</li>
+<li><strong>Climate data:</strong> TerraClimate (University of Idaho / Climatology Lab), gridded monthly
+climate and water-balance data &mdash;
+<a href="https://climate.northwestknowledge.net/TERRACLIMATE-DATA" target="_blank" rel="noopener">climate.northwestknowledge.net</a>.</li>
+<li><strong>Soil data:</strong> ISRIC SoilGrids, global gridded soil property predictions &mdash;
+<a href="https://soilgrids.org/" target="_blank" rel="noopener">soilgrids.org</a>.</li>
+<li><strong>Geography/terrain data:</strong> Copernicus Digital Elevation Model, via AWS Open Data &mdash;
+<a href="https://registry.opendata.aws/copernicus-dem/" target="_blank" rel="noopener">registry.opendata.aws/copernicus-dem</a>.</li>
+<li><strong>Subregion/district boundaries:</strong> UNOSAT administrative boundary data for Uganda &mdash;
+<a href="https://unosat-geodrr.cern.ch/data/rest/services/Hosted/UGA_District_Boundary/FeatureServer/23/query" target="_blank" rel="noopener">unosat-geodrr.cern.ch</a>.</li>
+</ul>
+
+<hr style="margin-top:60px; border:none; border-top:1px solid #ddd;">
+<p class="meta">
+Author: Paul Ojang &nbsp;|&nbsp; Contact: paulojangite@gmail.com<br>
+</p>
 
 </body>
 </html>
