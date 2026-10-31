@@ -22,27 +22,36 @@
 <h2>Why This Project</h2>
 <p>
 Uganda's northeastern region, Karamoja, is living through a severe hunger crisis as of 2026 --
-government relief efforts now target more than 300,000 households, and reports describe crop
-losses of 50 to 70 percent in the hardest-hit areas. This isn't the first time: a similar crisis
-in 2022 killed more than 2,000 people in the same region. Experts studying it are blunt about
-what to expect -- this will not be the last time.
+the government has launched emergency relief food for 313,987 households across the region's nine
+districts<sup><a href="#intro-sources">[1]</a></sup>, and a Food Rights Alliance official told Al Jazeera that crop losses now range
+from at least 50 to 70 percent in most areas<sup><a href="#intro-sources">[2]</a></sup>. This isn't the first time: the Uganda Human
+Rights Commission's 2022 report recorded at least 2,207 hunger-related deaths in Karamoja that
+year<sup><a href="#intro-sources">[3]</a></sup>. Researchers expect more of the same -- as Kristof Titeca of the University of Antwerp
+put it, "it will unfortunately not be the last"<sup><a href="#intro-sources">[2]</a></sup>.
 </p>
 <p>
 This project started from a simple question: can publicly available data about soil, climate,
 and local conditions help explain <i>why</i> some regions consistently struggle to grow enough
 food, while others don't? The map further down this page, showing water deficit by region, lines
-up with where this crisis is hitting hardest -- the driest regions (Karamoja, West Nile, Acholi,
-Teso) are exactly the ones in the news.
+up with where this crisis is hitting hardest -- Karamoja, the region in the news, is among the
+driest subregions on the map, alongside West Nile, Acholi and Teso.
 </p>
 <p>
-To be upfront about what this is and isn't: this is early-stage research covering four crops
-(maize, beans, cassava, groundnuts), not yet the staple grains hit hardest in Karamoja, and the
-models here are not accurate enough to act on directly. What this project <i>can</i> do, honestly,
-is show that the pattern is real and explainable with data -- and lay groundwork that, expanded
-with more crops and more years of data, could eventually support real decisions. That expansion
-is the plan for where this project goes next.
+To be upfront about what this is and isn't: this is early-stage research covering 16 crops
+(maize, beans, cassava, groundnuts, two coffee types, millet, sorghum, rice, sweet and Irish
+potatoes, simsim, three banana types and soya beans), and the models here are not accurate enough
+to act on directly. Only a few crops show a signal that more than one independent model agrees
+on, and even there the drivers are often unclear. What this project <i>can</i> do, honestly, is
+show that the pattern is real and explainable with data -- and lay groundwork that, expanded with
+more years of data, could eventually support real decisions. That expansion is the plan for where
+this project goes next.
 </p>
-
+<p class="meta" id="intro-sources">
+<b>Sources for this introduction:</b><br>
+[1] Nile Post via allAfrica, <a href="https://allafrica.com/stories/202607210811.html">"Uganda: Government Launches Emergency Food Relief for Karamoja"</a>, 20 July 2026.<br>
+[2] Al Jazeera, <a href="https://www.aljazeera.com/news/2026/7/29/why-is-uganda-experiencing-a-food-crisis">"Why is Uganda experiencing a food crisis?"</a>, 29 July 2026.<br>
+[3] Daily Monitor, <a href="https://www.monitor.co.ug/uganda/news/national/hunger-killed-2-000-people-in-karamoja-last-year-report-4243758">"Hunger killed 2,000 people in Karamoja last year - report"</a>, 23 May 2023 (reporting the Uganda Human Rights Commission's 2022 Human Rights and Freedoms report).
+</p>
 
 <h2>Feature Glossary</h2>
 <p>Plain-language definitions of the key variables behind this project's models:</p>
@@ -67,44 +76,36 @@ infrastructure and farmer access to information and resources.</li>
 
 <h2>Methodology</h2>
 <p>
-We looked at four crops -- maize, beans, cassava, and groundnuts -- grown across Uganda's 14
-regions, and tried to understand how much of the difference in how well each crop grows from one
-region to another can be explained by things like rainfall, soil quality, temperature, how hilly
-the land is, and how connected a region is (roads, electricity, radio access).
+We looked at 16 crops -- maize, beans, cassava, groundnuts, two coffee types, millet, sorghum, rice,
+sweet and Irish potatoes, simsim, three banana types and soya beans -- grown across Uganda's 14
+regions over several survey years, and tried to understand how much of the difference in how well
+each crop grows from one region to another can be explained by things like rainfall, soil quality,
+temperature, how hilly the land is, and how connected a region is (roads, electricity, radio access).
 </p>
 <p>
-To make sure we weren't fooling ourselves, we tested each region's prediction using only
+To make sure we weren't fooling ourselves, We tested each region's prediction using only
 information learned from the <i>other</i> 13 regions -- the model was never allowed to "peek" at
-the answer for the region being tested. We also double-checked every result using two different
-analysis methods, a bit like confirming a story with two independent sources: a finding only
-counts as trustworthy if both methods agree on it.
+the answer for the region being tested. We also cross-checked every result with four different
+analysis methods (Random Forest, Gradient Boosting, a simple decision tree and Ridge regression),
+a bit like confirming a story with several independent sources: a finding only counts as
+trustworthy if more than one of them agrees on it. When we later tuned each method's settings, we
+did it inside the same test -- choosing settings using only the training regions, never the region
+being tested -- so tuning could not quietly flatter the scores.
+</p>
+<p>
+One caution applies throughout: variables like access to improved water, electricity or radio often
+rank as the strongest predictors, but they most likely stand in for things we cannot measure, such as
+farmer wealth, rather than acting on yield directly. A model that predicts well is not the same as a
+model that has found the cause.
 </p>
 <p>
 Some results came out shaky, unclear, or simply didn't hold up -- and rather than hide that, we're
 reporting it honestly. A result that doesn't work is still useful information.
 </p>
 
-<h2>Model Performance by Crop</h2>
-<div style="height:500px; width:750px;">                        <script>window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
-        <script charset="utf-8" src="https://cdn.plot.ly/plotly-4.1.1.min.js" integrity="sha256-O24V1F27f8pb0glCkelh3cVHLNiHAJ5gCaVtq2aNch8=" crossorigin="anonymous"></script>                <div id="0d2c210c-dbbe-41be-a785-83a8ccdd50f0" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("0d2c210c-dbbe-41be-a785-83a8ccdd50f0")) {                    Plotly.newPlot(                        "0d2c210c-dbbe-41be-a785-83a8ccdd50f0",                        [{"marker":{"color":"#2a78d6"},"name":"Random Forest","text":{"dtype":"f8","bdata":"JzEIrBxaxD+sHFpkO9\u002fXP6wcWmQ7388\u002f5\u002fup8dJNwr8="},"textposition":"outside","x":["maize","beans","cassava","groundnuts"],"y":{"dtype":"f8","bdata":"JzEIrBxaxD+sHFpkO9\u002fXP6wcWmQ7388\u002f5\u002fup8dJNwr8="},"type":"bar"},{"marker":{"color":"#eb6834"},"name":"Ridge","text":{"dtype":"f8","bdata":"AiuHFtnOtz\u002fZzvdT46WrP0SLbOf7qcG\u002fhxbZzvdT278="},"textposition":"outside","x":["maize","beans","cassava","groundnuts"],"y":{"dtype":"f8","bdata":"AiuHFtnOtz\u002fZzvdT46WrP0SLbOf7qcG\u002fhxbZzvdT278="},"type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05}}},"shapes":[{"line":{"color":"black","width":1},"type":"line","x0":0,"x1":1,"xref":"x domain","y0":0,"y1":0,"yref":"y"}],"title":{"text":"Structural Model R\u00b2 by Crop and Model Family"},"yaxis":{"title":{"text":"LOGO-CV R\u00b2"}},"barmode":"group","height":500,"width":750},                        {"responsive": true}                    )                };            </script>        </div>
-<div class="caveat">
-<b>How to read the chart above</b>: think of each bar as "how much of the yield difference between
-regions this approach can explain" -- zero means it explains nothing beyond a random guess, and
-higher (up to 1) means it explains more. A bar below zero means the approach actually did
-<i>worse</i> than simply guessing the average every time.
-<br><br>
-Maize and beans show real, trustworthy signal. Cassava's result looks strong under one method but
-falls apart under the other -- we're treating that as unresolved, not confirmed. Groundnuts shows
-a clear "we don't know" result: yield barely differs between regions in this data, so there's
-nothing for any method to find.
-</div>
-
-
 <h2>All Crops at a Glance (select a crop)</h2>
 <div class="finding">
-<strong>How to read this section:</strong> these four charts now cover all 12 crops built so far
-(maize, beans, cassava, groundnuts, coffee robusta, coffee arabica, millet, sorghum, rice,
-sweet potatoes, Irish potatoes, simsim) &mdash; pick a crop from each dropdown. Yield, production,
+<strong>How to read this section:</strong> these charts now cover all 16 crops built so far (maize, beans, cassava, groundnuts, coffee robusta, coffee arabica, millet, sorghum, rice, sweet potatoes, Irish potatoes, simsim, banana food, banana sweet, banana beer, soya beans) &mdash; pick a crop from each dropdown. Yield, production,
 and trend are purely descriptive for every crop. The <strong>Yield Drivers</strong> chart is only
 as reliable as the modeling behind it: confirmed by multiple independent models for
 <strong>maize, beans, and rice</strong>; confirmed as a clean null result (no reliable driver found)
@@ -213,10 +214,7 @@ either one alone.
 <strong>On the modeling results:</strong> of the three cereals, only <strong>rice</strong> produced
 a reliable finding: three independently-built models (Random Forest, Gradient Boosting, and a
 simple decision tree) agreed that rainfall and climatic water deficit are real drivers of rice
-yield -- drier conditions mean lower yield. For <strong>millet</strong> and <strong>sorghum</strong>,
-only one of the four models tested showed any positive result, and the others disagreed or
-performed worse than simply guessing the average -- so, consistent with how this project has
-treated every inconclusive result, we are not presenting a driver for either crop. The data is
+yield -- drier conditions mean lower yield. For <strong>sorghum</strong>, three of the four models beat the average (Random Forest, Ridge and, after tuning, Gradient Boosting), and Random Forest and Ridge stay positive when any single subregion is left out -- so sorghum is <em>predictable</em>, but we are not presenting a driver: the tree models' top feature is access to improved water, probably a stand-in for farmer wealth, and only rainfall was named by all four models. For <strong>millet</strong>, only Ridge clearly beat the average (Random Forest only marginally, the other two did worse than guessing), so we treat it as unconfirmed. The data is
 shown above regardless, because raw data is useful on its own even without a reliable model behind it.
 </div>
 
@@ -286,6 +284,42 @@ just 30 hectares harvested, a 12.4 mt/ha yield) is far outside every other subre
 mt/ha range. We've kept it in the dataset rather than silently removing it, but flag it here as a
 likely data or survey error worth independent investigation rather than a genuine finding.
 </p>
+
+<h2>Model Performance by Crop</h2>
+<iframe src="all_crops_model_performance.html" style="width:100%; height:680px; border:none;"></iframe>
+<div class="caveat">
+<b>How to read the chart above</b>: each bar shows how well one model family predicted yield for
+subregions it had never seen (leave-one-subregion-out testing). Zero means no better than guessing
+the average; a bar below zero means the model did <i>worse</i> than guessing the average; higher
+(up to 1) means it explained more of the difference between regions. All four model families are
+shown for all 16 crops. The first dropdown switches between default settings (what we originally
+reported) and settings tuned inside the cross-validation; the second zooms in, because a few bars
+(coffee, sweet potatoes, Irish potatoes) fall far below -1 and would otherwise flatten everything
+else. Hover over any bar for its exact value.
+<br><br>
+<b>What the chart shows:</b>
+<ul>
+<li><b>Maize, beans and rice</b> -- more than one independently built model beats the average
+(beans: all four under default settings; rice: all four once tuned; maize: Random Forest and Ridge,
+plus Decision Tree after tuning). These are the crops where we report a driver.</li>
+<li><b>Predictable, but the driver is unconfirmed: cassava, banana (food) and sorghum</b> -- most
+models beat the average (cassava: three of four by default, four after tuning; banana food: all four;
+sorghum: three of four), but the models do not tell a consistent story about why. Infrastructure
+variables such as access to improved water often rank near the top, probably standing in for farmer
+wealth rather than acting on yield directly.</li>
+<li><b>Weak or unconfirmed: millet, simsim, banana (beer)</b> -- for millet only Ridge clearly beats
+the average; for simsim two of four models do. Banana beer is positive for all four models after
+tuning, but it has just 19 data points and one model fell from about 0.50 to 0.05 when tuned, which
+is too unstable to trust.</li>
+<li><b>No reliable signal: groundnuts, both coffees, soya beans, sweet potatoes, banana (sweet) and
+Irish potatoes</b> -- every model scores below zero, or (Irish potatoes) at best about 0.1.</li>
+</ul>
+<b>On tuning:</b> it did not create signal -- every crop where all four models scored below zero
+under default settings is still below zero after tuning. It can also hurt when the sample is tiny
+(banana beer, and Ridge on banana food, scored lower tuned than default), which is why both views
+are shown rather than only the more flattering one. Even the best scores here are moderate and rest
+on 19 to 56 data points per crop, so none of these models is accurate enough to act on directly.
+</div>
 
 <h2>Appendix: Data Sources</h2>
 <ul>
